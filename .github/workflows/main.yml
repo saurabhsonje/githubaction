@@ -1,1 +1,13 @@
-hello
+name: Docker imgae creation for nodejs app
+on: 
+ push:
+   branches: 
+        - main 
+
+jobs: 
+  build: 
+    runs-on: ubantu-latest
+
+    steps: 
+  
+
