@@ -27,7 +27,3 @@ jobs:
              context: .
              push: true
              tags: saurabhsonje/nodejs:latest
-             
-      
-  
-
