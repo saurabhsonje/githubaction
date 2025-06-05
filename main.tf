@@ -1,5 +1,5 @@
  provider "aws" {
-   region = ""
+   region = "eu-north-1"
  }
 
  resource "aws_iam_role" "lambda_role" {
