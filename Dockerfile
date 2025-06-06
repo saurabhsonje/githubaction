@@ -1,5 +1,10 @@
+# FROM node:18
+# WORKDIR /app
+# COPY app.js .
+# EXPOSE 3000
+# CMD ["node" , "app.js"] 
 # Use the official AWS Node.js Lambda base image
-FROM public.ecr.aws/lambda/nodejs18.x
+FROM public.ecr.aws/lambda/nodejs18
 
 # Copy function code
 COPY app.js ./
