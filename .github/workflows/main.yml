@@ -1,8 +1,5 @@
 name: Docker imgae creation for nodejs app
 on: 
- # push:
- #   branches: 
- #        - main 
    workflow_call:
      inputs:
         lambda_function_name:
