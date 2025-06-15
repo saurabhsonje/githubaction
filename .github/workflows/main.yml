@@ -34,8 +34,9 @@ jobs:
        - name: Tag & Push Docker image to ECR
          run: |
               docker tag $ECR_REPOSITORY:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY
-              docker push 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction
+              #docker push 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction
+               docker push $ECR_REPOSITORY
 
        - name: Deploy to Lambda
          run: |
-              aws lambda update-function-code --function-name nodejs_lambda_function --image-uri 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction:latest
+              aws lambda update-function-code --function-name nodejs_lambda_function --image-uri $ECR_REPOSITORY:latest
