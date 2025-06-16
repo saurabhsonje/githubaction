@@ -4,6 +4,7 @@ on:
     inputs:
         lambda_function_name:
         type: string
+        required: true
     secrets:
         AWS_ACCESS_KEY_ID:
             required: true
