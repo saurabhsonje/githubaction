@@ -1,10 +1,10 @@
 name: Docker imgae creation for nodejs app
 on: 
-   workflow_call:
-     inputs:
+  workflow_call:
+    inputs:
         lambda_function_name:
         type: string
-     secrets:
+    secrets:
         AWS_ACCESS_KEY_ID:
             required: true
         AWS_SECRET_ACCESS_KEY:
