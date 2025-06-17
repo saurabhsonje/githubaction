@@ -9,7 +9,7 @@ jobs:
   call_reusable_workflow:
     uses: saurabhsonje/githubaction/.github/workflows/main.yml@main
     with: 
-        lambda_function_name: "nodejs_lambda_function"
+       # lambda_function_name: "nodejs_lambda_function"
     secrets:
              AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
              AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
