@@ -39,7 +39,8 @@ jobs:
               aws ecr get-login-password \
               | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
        - name : docker build
-         run: docker build -t $ECR_REPOSITORY .
+         #run: docker build -t $ECR_REPOSITORY .
+         run: docker build -t 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction .
 
        - name: Tag & Push Docker image to ECR
          run: |
