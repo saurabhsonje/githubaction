@@ -7,7 +7,7 @@ on:
 
 jobs:
   call_reusable_workflow:
-    uses: saurabhsonje/githubaction/.github/workflows/main.yml@main
+    uses: .github/workflows/main.yml@main
     with: 
         lambda_function_name: "nodejs_lambda_function"
     secrets:
