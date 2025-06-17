@@ -34,19 +34,19 @@ jobs:
              aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
              aws-region: eu-north-1 ###${{secrets.AWS_REGION}}
        
-#        - name: login to ECR
-#          run: |
-#               aws ecr get-login-password \
-#               | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-#        - name : docker build
-#          run: docker build -t $ECR_REPOSITORY .
+       - name: login to ECR
+         run: |
+              aws ecr get-login-password \
+              | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+       - name : docker build
+         run: docker build -t $ECR_REPOSITORY .
 
-#        - name: Tag & Push Docker image to ECR
-#          run: |
-#               docker tag $ECR_REPOSITORY:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY
-#               #docker push 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction
-#                docker push $ECR_REPOSITORY
+       - name: Tag & Push Docker image to ECR
+         run: |
+              docker tag $ECR_REPOSITORY:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY
+              #docker push 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction
+               docker push $ECR_REPOSITORY
 
-#        - name: Deploy to Lambda
-#          run: |
-#               aws lambda update-function-code --function-name nodejs_lambda_function --image-uri $ECR_REPOSITORY:latest
+       - name: Deploy to Lambda
+         run: |
+              aws lambda update-function-code --function-name nodejs_lambda_function --image-uri $ECR_REPOSITORY:latest
