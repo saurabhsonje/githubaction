@@ -22,6 +22,7 @@ jobs:
       AWS_REGION: ${{ secrets.AWS_REGION }}
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
       ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+      ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
 
     steps: 
        - name: checkout code
@@ -37,15 +38,15 @@ jobs:
        - name: login to ECR
          run: |
               aws ecr get-login-password \
-              | docker login --username AWS --password-stdin 810471244058.dkr.ecr.eu-north-1.amazonaws.com 
+              | docker login --username AWS --password-stdin $ECR_REGISTRY
 #docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
        - name : docker build
-         #run: docker build -t $ECR_REPOSITORY .
-         run: docker build -t 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction .
+         run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY .
+         #run: docker build -t 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction .
 
        - name: Tag & Push Docker image to ECR
          run: |
-              docker tag $ECR_REPOSITORY:latest1 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/nodejs/githubaction:latest1
+              docker tag $ECR_REPOSITORY:latest1 $ECR_REGISTRY/$ECR_REPOSITORY:latest1
               docker push 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction:latest1
                #docker push $ECR_REPOSITORY
 
