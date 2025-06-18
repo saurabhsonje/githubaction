@@ -36,19 +36,16 @@ jobs:
              aws-region: eu-north-1 ###${{secrets.AWS_REGION}}
        
        - name: login to ECR
-         run: |
-              aws ecr get-login-password \
-              | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-#docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-       - name : docker build
-         run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY .
-         #run: docker build -t 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction .
+         id: login-ecr
+         uses: aws-actions/amazon-ecr-login@v1
+       
 
-       - name: Tag & Push Docker image to ECR
+       - name: Build Tag & Push Docker image to ECR
+
          run: |
-              docker tag $ECR_REPOSITORY:latest1 $ECR_REGISTRY/$ECR_REPOSITORY:latest1
-              docker push 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction:latest1
-               #docker push $ECR_REPOSITORY
+            docker build -t $ECR_REGISTRY .
+            docker push $ECR_REGISTRY
+
 
        - name: Deploy to Lambda
          run: |
