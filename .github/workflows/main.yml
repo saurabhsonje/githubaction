@@ -38,7 +38,7 @@ jobs:
        - name: login to ECR
          run: |
               aws ecr get-login-password \
-              | docker login --username AWS --password-stdin $ECR_REGISTRY
+              | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
 #docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
        - name : docker build
          run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY .
