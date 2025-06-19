@@ -22,7 +22,7 @@ jobs:
       AWS_REGION: ${{ secrets.AWS_REGION }}
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
       ECR_REPOSITORY: nodejs/githubaction
-      ECR_REGISTRY: 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction
+      ECR_REGISTRY: 810471244058.dkr.ecr.eu-north-1.amazonaws.com
 
     steps: 
        - name: checkout code
