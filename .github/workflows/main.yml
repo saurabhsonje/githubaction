@@ -21,8 +21,8 @@ jobs:
     env:
       AWS_REGION: ${{ secrets.AWS_REGION }}
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-      ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+      ECR_REPOSITORY: nodejs/githubaction
+      ECR_REGISTRY: 810471244058.dkr.ecr.eu-north-1.amazonaws.com/nodejs/githubaction
 
     steps: 
        - name: checkout code
@@ -40,11 +40,12 @@ jobs:
          uses: aws-actions/amazon-ecr-login@v1
        
 
-       - name: Build Tag & Push Docker image to ECR
+       - name: Build, Tag & Push Docker image to ECR
          run: |
-             docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latestv1 .
-             docker push $ECR_REGISTRY/$ECR_REPOSITORY:latestv1
+            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latestv1 .
+            docker push $ECR_REGISTRY/$ECR_REPOSITORY:latestv1
+
              
-      - name: Deploy to Lambda
+       - name: Deploy to Lambda
          run: |
               aws lambda update-function-code --function-name nodejs_lambda_function --image-uri $ECR_REPOSITORY:latest1
