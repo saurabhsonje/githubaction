@@ -41,12 +41,10 @@ jobs:
        
 
        - name: Build Tag & Push Docker image to ECR
-
          run: |
-            docker build -t $ECR_REGISTRY .
-            docker push $ECR_REGISTRY
-
-
-       - name: Deploy to Lambda
+             docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latestv1 .
+             docker push $ECR_REGISTRY/$ECR_REPOSITORY:latestv1
+             
+      - name: Deploy to Lambda
          run: |
               aws lambda update-function-code --function-name nodejs_lambda_function --image-uri $ECR_REPOSITORY:latest1
