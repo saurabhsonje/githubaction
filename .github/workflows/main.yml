@@ -48,4 +48,4 @@ jobs:
              
        - name: Deploy to Lambda
          run: |
-              aws lambda update-function-code --function-name nodejs_lambda_function --image-uri $ECR_REPOSITORY:latest1
+              aws lambda update-function-code --function-name nodejs_lambda_function --image-uri $ECR_REPOSITORY:latestv1
