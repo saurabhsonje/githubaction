@@ -5,6 +5,6 @@ exports.handler = async (event) => {
     headers: {
       'Content-Type': 'text/plain',
     },
-    body: 'Hello from Lambda containerized Node.js app checking\n',
+    body: 'Hello from Lambda containerized Node.js app checking to check \n',
   };
 };
